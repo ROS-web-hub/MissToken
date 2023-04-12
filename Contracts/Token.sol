@@ -31,15 +31,13 @@ contract MissInternetToken is ERC20, ERC20Burnable, Ownable, ReentrancyGuard {
     mapping(address => bool) public isRouter;
 
     constructor() ERC20("Miss Internet Token", "MISS") {
-        devAddress = msg.sender; // for test
-        _mint(msg.sender, INITIAL_SUPPLY);
+        _mint(devAddress, INITIAL_SUPPLY);
         taxPeriod = 30 days;
         lastTaxTimestamp = block.timestamp;
     }
 
     function setUniswapV2Pair(address newUniswapV2Pair) public onlyOwner {
         isPair[newUniswapV2Pair] = true;
-        // uniswapV2Pair = newUniswapV2Pair;
     }
     function setRouter(address newRouter) public onlyOwner {
         isRouter[newRouter] = true;
@@ -97,9 +95,7 @@ contract MissInternetToken is ERC20, ERC20Burnable, Ownable, ReentrancyGuard {
                 console.log("yes send");
                 uint256 taxAmount = amount.mul(feePercent).div(100);
                 amount = amount.sub(taxAmount);
-                uint256 liquidityAmount = taxAmount.mul(liquidityPercent).div(
-                    10
-                );
+                uint256 liquidityAmount = taxAmount.mul(liquidityPercent).div(10);
                 uint256 rewardAmount = taxAmount.mul(rewardPercent).div(10);
                 uint256 burnAmount = taxAmount.mul(burnPercent).div(10);
                 super._transfer(sender, address(this), liquidityAmount);

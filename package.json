@@ -1,7 +1,6 @@
 {
   "name": "hardhat-tutorial",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +12,7 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@nomiclabs/hardhat-ethers": "^2.0.0",
-    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
     "@typechain/hardhat": "^6.1.2",
     "@types/chai": "^4.2.0",
     "@types/mocha": ">=9.1.0",
@@ -31,6 +30,20 @@
     "ether": "0.0.9",
     "ethers": "^5.0.4",
     "hardhat-console": "^1.0.0",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jale-data/MissToken.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jale-data/MissToken/issues"
+  },
+  "homepage": "https://github.com/jale-data/MissToken#readme",
+  "description": ""
 }

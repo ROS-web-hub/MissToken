@@ -1,10 +1,23 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomiclabs/hardhat-etherscan");
 
 module.exports = {
+  etherscan: {
+    apiKey: "QH174CURA1RG1VT37EKU9ZBIQC694GRMBQ"
+  },
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true
     },
+    bsctest: {
+      url: `https://data-seed-prebsc-1-s3.binance.org:8545/`,
+      accounts: [`346d047cb31d446bb9a30dddc798f070ddab4dfeb193156bf924ee807408fdc6`]
+    },
+    mainnet: {
+      url: "https://bsc-dataseed1.binance.org/",
+      accounts: [`346d047cb31d446bb9a30dddc798f070ddab4dfeb193156bf924ee807408fdc6`]
+    }
+
   },
   solidity: {
     compilers: [

@@ -26,17 +26,17 @@ describe("Token contract", function () {
     const hardhatToken = await Token.deploy();
 
     // selling and buying 
-
-
-
     tx = await hardhatToken.transfer(hardhatToken.address, ethers.utils.parseEther("100"));
     await tx.wait();
 
     tx = await hardhatToken.transfer(addr1.address, ethers.utils.parseEther("90"));
     await tx.wait();
+    console.log('addr1.address: ', addr1.address);
 
+    console.log("send start", await hardhatToken.balanceOf(addr2.address));
     tx = await hardhatToken.connect(addr1).transfer(addr2.address, ethers.utils.parseEther("10"));
     await tx.wait();
+    console.log("send end", await hardhatToken.balanceOf(addr2.address));
 
     tx = await hardhatToken.approve(hardhatPancakeRouter.address, ethers.utils.parseEther("100"));
 
@@ -76,8 +76,6 @@ describe("Token contract", function () {
     await tx.wait();
     console.log("After sell ", ethers.utils.formatEther(await hardhatToken.balanceOf(await hardhatPancakeFactory.getPair(hardhatToken.address, hardhatWBNB.address))));
 
-    // console.log("after ", await hardhatPancakeRouter.getAmountsOut(ethers.utils.parseEther("10"), [hardhatToken.address, hardhatWBNB.address]))
-
     console.log("buy   ");
     console.log(ethers.utils.formatEther(await hardhatToken.balanceOf(addr1.address)));
     tx = await hardhatPancakeRouter.swapETHForExactTokens(
@@ -107,7 +105,7 @@ describe("Token contract", function () {
         999999999999, { value: ethers.utils.parseEther("13") }
       );
 
-      console.log("after add ", ethers.utils.formatEther(await hardhatToken.balanceOf(await hardhatPancakeFactory.getPair(hardhatToken.address, hardhatWBNB.address))));
+    console.log("after add ", ethers.utils.formatEther(await hardhatToken.balanceOf(await hardhatPancakeFactory.getPair(hardhatToken.address, hardhatWBNB.address))));
 
     // console.log(await hardhatPancakeRouter.getAmountsOut(ethers.utils.parseEther("1"), [hardhatToken.address, hardhatWBNB.address]));
   })
